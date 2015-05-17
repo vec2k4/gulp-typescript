@@ -3,4 +3,6 @@ define(["require", "exports", './other-3'], function (require, exports, other) {
     console.log(a.value);
 });
 
+foobar();
+
 //# sourceMappingURL=test-3.js.map
