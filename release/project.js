@@ -26,8 +26,11 @@ var Project = (function () {
         this.output = new output.Output(this, outputJs, outputDts);
     };
     Project.prototype.src = function () {
-        if (!this.config.files) {
-            throw new Error('gulp-typescript: You can only use src() if the \'files\' property exists in your tsconfig.json. Use gulp.src(\'**/**.ts\') instead.');
+          if (!this.config.files) {
+            this.config.files = this.config.filesGlob;
+            if (!this.config.files) {
+                throw new Error('gulp-typescript: You can only use src() if the \'files\' property exists in your tsconfig.json. Use gulp.src(\'**/**.ts\') instead.');
+            }
         }
         var base = path.dirname(this.configFileName);
         if (this.config.compilerOptions && this.config.compilerOptions.rootDir) {
